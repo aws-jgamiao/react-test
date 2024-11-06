@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, StatusBar } from 'react-native';
 import ShiftCard from './src/components/ShiftCard';
+import "./global.css"
 
 export default function App() {
   return (
