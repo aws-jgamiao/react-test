@@ -28,12 +28,12 @@ const ShiftCard: React.FC<ShiftCardProps> = ({
   notificationCount,
 }) => {
   return (
-    <View className="bg-[#FF8A47] rounded-xl pl-1 pr-1 pb-1 pt-2 shadow-md">
+    <View className="bg-[#FF8A47] rounded-xl pl-1 pr-1 pb-1 pt-2 mb-7">
       {/* Shift Header */}
       <View className="flex-row justify-between items-center pb-1 pl-2 pr-2 rounded-lg">
         <View className="flex-row justify-between items-center">
           {/* Status and Duration */}
-          <View className="bg-white rounded-lg py-1 px-2 mr-2 flex-row items-center">
+          <View className="bg-white rounded-md py-1 px-2 mr-2 flex-row items-center">
             {/* SVG Icon */}
             <Svg width="20" height="20" viewBox="0 0 56 56" className="mr-2">
               <Path
@@ -52,7 +52,7 @@ const ShiftCard: React.FC<ShiftCardProps> = ({
                 transform="translate(8,25)"
               />
             </Svg>
-            <Text className="text-[#FF8A47] text-sm mr-2 font-bold">{status}</Text>
+            <Text className="text-[#FF8A47] text-sm mr-2 font-medium">{status}</Text>
             <Text className="bg-[#FFECB3] text-[#FF8A47] text-xs rounded-[4px] px-2 font-bold">
               {duration}
             </Text>
@@ -74,7 +74,7 @@ const ShiftCard: React.FC<ShiftCardProps> = ({
       </View>
 
 
-      <View className="bg-[#FFF7F0] p-2 rounded-b-xl">
+      <View className="bg-[#FFF7F0] p-2 rounded-b-md">
         {/* User Info */}
         <View className="flex-row items-center justify-between my-2">
           <View className="flex-row items-center">
