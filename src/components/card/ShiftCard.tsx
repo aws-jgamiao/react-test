@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import * as AvatarPrimitive from '@rn-primitives/avatar';
 import Svg, { Path } from 'react-native-svg';
 import ActionButtons from '../buttons/ActionButtons';
