@@ -21,7 +21,7 @@ export default function App() {
           notificationCount={2}
         />
         <ShiftCard
-          status="Complete"
+          status="Upcoming"
           duration="8hrs"
           distance="5km"
           userName="Mickey Mouse"
@@ -31,6 +31,17 @@ export default function App() {
           profileImage="https://img.freepik.com/premium-photo/mickey-mouse-with-his-arms-raised-air_971166-158674.jpg?ga=GA1.1.2133803969.1730878438&semt=ais_hybrid"
           notificationCount={0}
         />
+        {/* <ShiftCard
+          status="Active"
+          duration="8hrs"
+          distance="5km"
+          userName="Mickey Mouse"
+          date="15 October 2024"
+          time="9am - 5pm"
+          location="5678 Elm Street, Town"
+          profileImage="https://img.freepik.com/premium-photo/mickey-mouse-with-his-arms-raised-air_971166-158674.jpg?ga=GA1.1.2133803969.1730878438&semt=ais_hybrid"
+          notificationCount={0}
+        /> */}
         <StatusBar />
       </ScrollView>
       
