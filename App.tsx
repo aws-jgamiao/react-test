@@ -24,7 +24,7 @@ export default function App() {
           status="Complete"
           duration="8hrs"
           distance="5km"
-          userName="Mickey Mouse"
+          userName="Mickey Mouse Joe"
           date="15 October 2024"
           time="9am - 5pm"
           location="5678 Elm Street, Town"
