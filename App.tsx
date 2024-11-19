@@ -2,10 +2,12 @@ import React from 'react';
 import { ScrollView, StatusBar } from 'react-native';
 import ShiftCard from './src/components/card/ShiftCard';
 import "./global.css"
+import CustomDatePicker from './src/components/date/CustomDatePicker';
 
 export default function App() {
   return (
     <ScrollView className="bg-gray-100 p-4">
+      <CustomDatePicker/>
       <ShiftCard
         status="Uncomplete"
         duration="3hrs"
