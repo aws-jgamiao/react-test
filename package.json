@@ -18,6 +18,7 @@
     "react-dom": "18.3.1",
     "react-native": "0.76.2",
     "react-native-modal-datetime-picker": "^18.0.0",
+    "react-native-pell-rich-editor": "^1.9.0",
     "react-native-svg": "15.8.0",
     "react-native-web": "~0.19.13",
     "tailwindcss-react-native": "^1.7.10",
