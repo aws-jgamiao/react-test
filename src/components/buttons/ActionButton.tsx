@@ -6,9 +6,9 @@ interface ActionButtonProps {
   onPress: () => void;
   icon: JSX.Element;
   text: string;
-  style?: ViewStyle; // custom style for the container
-  iconStyle?: ViewStyle; // custom style for the icon
-  textStyle?: TextStyle; // custom style for the text
+  style?: ViewStyle;
+  iconStyle?: ViewStyle;
+  textStyle?: TextStyle;
   iconColor?: string;
 }
 
@@ -23,12 +23,18 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 }) => (
   <TouchableOpacity
     onPress={onPress}
-    style={[{ flex: 1, backgroundColor: 'white', borderWidth: 2, borderColor: iconColor, borderRadius: 8, padding: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginHorizontal: 4 }, style]} // Default styles
+    className={`flex-1 bg-white border-2 border-${iconColor} rounded-lg p-2 flex-row items-center justify-center mx-1 ${style}`}
   >
-    <Svg width="20" height="20" viewBox="0 0 70 70" style={[{ marginRight: 4 }, iconStyle]}>
+    <Svg
+      width="20"
+      height="20"
+      viewBox="0 0 70 70"
+      className={`mr-1 ${iconStyle}`}
+    >
       {icon}
     </Svg>
-    <Text style={[{ color: iconColor, fontSize: 14, fontWeight: 'bold' }, textStyle]}>{text}</Text>
+    <Text className={`text-${iconColor} text-sm font-bold ${textStyle}`}
+>{text}</Text>
   </TouchableOpacity>
 );
 

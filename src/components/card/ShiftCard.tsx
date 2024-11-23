@@ -16,38 +16,58 @@ interface ShiftCardProps {
   notificationCount: number;
 }
 
-const getStatusColor = (status: string) => {
+const getStatusColorTailwind = (status: string) => {
   switch (status.toLowerCase()) {
     case 'upcoming':
-      return '#3B82F6'; 
-      case 'active':
-      return 'green'
+      return 'blue-500';
+    case 'active':
+      return 'green-500';
+    case 'uncomplete':
+      return 'orange-500';
     default:
+      return 'black-200';
+  }
+};
+
+const getStatusColor= (status: string) => {
+  switch (status.toLowerCase()) {
+    case 'upcoming':
+      return '#3B82F6';  // Tailwind equivalent of #3B82F6
+    case 'active':
+      return 'green'; // Tailwind equivalent of 'green'
+    case 'uncomplete':
       return '#F97316';
+    default:
+      return 'black-200';
   }
 };
 
 const getTextColor = (status: string) => {
   switch (status.toLowerCase()) {
     case 'upcoming':
-      return '#DBEAFE'; 
+      return 'blue-100';  // Tailwind equivalent of #DBEAFE
     case 'active':
-      return 'green'
+      return 'green-500'; // Tailwind equivalent of 'green'
+    case 'uncomplete':
+      return 'orange-100';
     default:
-      return '#FFEDD5';
+      return 'black-200'; // Tailwind equivalent of #FFEDD5
   }
 };
 
 const getBackGroundColor = (status: string) => {
   switch (status.toLowerCase()) {
     case 'upcoming':
-      return '#c4c9d0'; 
-      case 'active':
-      return 'green'
+      return 'gray-300';  // Tailwind equivalent of #c4c9d0
+    case 'active':
+      return 'green-500'; // Tailwind equivalent of 'green'
+    case 'uncomplete':
+      return 'orange-100';
     default:
-      return '#FFF7ED';
+      return 'black-200'; // Tailwind equivalent of #FFF7ED
   }
 };
+
 
 const ShiftCard: React.FC<ShiftCardProps> = ({
   status,
@@ -61,12 +81,13 @@ const ShiftCard: React.FC<ShiftCardProps> = ({
   notificationCount,
 }) => {
 
+  const iconColorTailwind = getStatusColorTailwind(status);
   const iconColor = getStatusColor(status);
   const secondaryBackGroundColor = getTextColor(status);
   const primaryBackGroundColor = getBackGroundColor(status);
   
   return (
-    <View className={`rounded-lg pl-1 pr-1 pb-1 pt-2 mb-7`} style={{ backgroundColor: iconColor }}>
+    <View className={`rounded-lg pl-1 pr-1 pb-1 pt-2 mb-7 bg-${iconColorTailwind}`}>
       {/* Shift Header */}
       <View className="flex-row justify-between items-center pb-1 pl-2 pr-2 rounded-lg">
         <View className="flex-row justify-between items-center">
@@ -90,8 +111,8 @@ const ShiftCard: React.FC<ShiftCardProps> = ({
                 transform="translate(8,25)"
               />
             </Svg>
-            <Text style={{ color: iconColor }} className="text-sm mr-2 font-medium">{status}</Text>
-            <Text style={{ color: iconColor, backgroundColor: secondaryBackGroundColor }} className="text-xs rounded-[4px] px-2 font-bold">
+            <Text className={`text-sm mr-2 font-medium text-${iconColorTailwind}`}>{status}</Text>
+            <Text className={`text-xs rounded-[4px] px-2 font-bold text-${iconColorTailwind} bg-${secondaryBackGroundColor}`}>
               {duration}
             </Text>
           </View>
@@ -112,7 +133,7 @@ const ShiftCard: React.FC<ShiftCardProps> = ({
       </View>
 
 
-      <View style={{backgroundColor:primaryBackGroundColor}} className="p-2 rounded-b-md">
+      <View className={`p-2 rounded-b-md bg-${primaryBackGroundColor}`}>
         {/* User Info */}
         <View className="flex-row items-center justify-between my-2">
           <View className="flex-row items-center">
@@ -135,7 +156,7 @@ const ShiftCard: React.FC<ShiftCardProps> = ({
           </View>
 
           <View className="flex-row items-center">          
-            <View className="bg-white rounded-lg py-1 px-2 flex-row items-center border-2" style={{ borderColor: iconColor }}>
+            <View className={`bg-white rounded-lg py-1 px-2 flex-row items-center border-2 border-${iconColorTailwind}`}>
               {/* SVG Icon */}
               <Svg width="20" height="20" viewBox="0 0 56 56" className="mr-2">
                 <Path 
@@ -150,7 +171,7 @@ const ShiftCard: React.FC<ShiftCardProps> = ({
                   transform="translate(15,28)" 
                 />
               </Svg>
-              <Text style={{color:iconColor}} className="text-sm">{date}</Text>
+              <Text className={`text-sm text-${iconColorTailwind}`}>{date}</Text>
             </View>
           </View>
         </View>
@@ -190,7 +211,7 @@ const ShiftCard: React.FC<ShiftCardProps> = ({
         </View>
 
         {/* Action Buttons */}
-        <ActionButtons iconColor={iconColor} />
+        <ActionButtons iconColor={iconColorTailwind} />
       </View>
 
     </View>
