@@ -1,14 +1,20 @@
 import React from 'react';
-import { View, ScrollView, StatusBar } from 'react-native';
 import ShiftCard from './src/components/card/ShiftCard';
 import BottomNavBar from './src/components/card/BottomNavBar';
-import "./global.css";
 import { TailwindProvider } from 'tailwindcss-react-native';
+import { ScrollView, SafeAreaView, StatusBar, View } from 'react-native';
+import "./global.css"
+import TimePicker from './src/components/time/Time';
 
 export default function App() {
   return (
-    <View className="flex-1 bg-gray-100">
+    
+      <SafeAreaView style={{ flex: 1 }}>
+        <View className="flex-1 bg-gray-100">
+          
+      
       <ScrollView className="p-4">
+      <TimePicker />
         <ShiftCard
           status="Uncomplete"
           duration="3hrs"
@@ -38,6 +44,8 @@ export default function App() {
       <TailwindProvider platform="web">
         <BottomNavBar />
       </TailwindProvider>
-    </View>
+      </View>
+      </SafeAreaView>
+    
   );
-}
+};
