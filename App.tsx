@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, ScrollView, StatusBar } from 'react-native';
-import ShiftCard from './src/components/card/ShiftCard';
 import BottomNavBar from './src/components/card/BottomNavBar';
 import "./global.css";
 import { TailwindProvider } from 'tailwindcss-react-native';
+import ShiftCard from './src/components/card/ShiftCard';
 
 export default function App() {
   return (
@@ -46,7 +46,7 @@ export default function App() {
       </ScrollView>
       
       {/* Bottom Navigation Bar */}
-      <TailwindProvider platform="web">
+      <TailwindProvider platform="native">
         <BottomNavBar />
       </TailwindProvider>
     </View>
