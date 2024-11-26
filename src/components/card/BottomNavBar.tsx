@@ -7,6 +7,9 @@ import Home from '../icons/Home';
 import Shifts from '../icons/Shifts';
 import TimeSheets from '../icons/TimeSheets';
 import More from '../icons/More';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faClock } from '@fortawesome/free-regular-svg-icons/faClock'
+import { faPlayCircle } from '@fortawesome/free-regular-svg-icons/faPlayCircle'
 
 const IconButton = styled(TouchableOpacity);
 
@@ -61,9 +64,38 @@ const BottomNavBar: React.FC = () => {
         )}
       </IconButton>
 
-      <View className="absolute top-[-24px] left-1/2 transform -translate-x-1/2 z-10">
+      <View className="absolute top-[-45px] left-1/2 transform -translate-x-1/2 z-10">
         <TouchableOpacity onPress={handleClockPress}>
-          {isClockOn ? <ClockOn /> : <ClockOff />}
+          {isClockOn ? <View className="relative flex items-center justify-center">
+             <View className="relative bg-[#22C55E] rounded-full w-[125px] h-[125px] flex items-center justify-center border-[10px] border-white">
+                  <FontAwesomeIcon
+                    icon={faClock}
+                    size={35}
+                    color="white"
+                    style={{
+                      position: 'absolute',
+                      top: 25,
+                      left: '47%',
+                      transform: [{ translateX: -15 }],
+                  }}
+                />
+                <FontAwesomeIcon
+                  icon={faPlayCircle}
+                  size={20}
+                  color="#22C55E"
+                  style={{
+                    position: 'absolute',
+                    bottom: 45,
+                    right: 30,
+                    zIndex: 20,
+                    backgroundColor: 'white',
+                    borderRadius: 50,
+                    padding: 0,
+                  }}
+                />
+                <Text className="absolute bottom-7 text-white text-[14px] font-inter font-semibold z-30">Clock On</Text>
+              </View>
+            </View> : <ClockOff />}
         </TouchableOpacity>
       </View>
 

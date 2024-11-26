@@ -6,7 +6,7 @@ import { TailwindProvider } from 'tailwindcss-react-native';
 
 export default function App() {
   return (
-    <View className="flex-1 bg-gray-100">
+    <View className="flex-1 bg-gray-500">
       <ScrollView className="p-4">
       </ScrollView>
       
