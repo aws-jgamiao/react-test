@@ -13,7 +13,7 @@ import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons/faArr
 
 const IconButton = styled(TouchableOpacity);
 
-const BottomNavBar: React.FC = () => {
+const BottomNavBar = () => {
   const [isClockOn, setIsClockOn] = useState(true);
   const [selectedTab, setSelectedTab] = useState<string>('Home');
   
