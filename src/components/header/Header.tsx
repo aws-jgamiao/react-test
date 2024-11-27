@@ -1,69 +1,38 @@
 import React from 'react';
-import { View, Image, SafeAreaView, Platform, StyleSheet, useWindowDimensions } from 'react-native';
-import Logo from '../icons/Logo';
+import { View, Image, SafeAreaView, Platform, Dimensions } from 'react-native';
+
+const screenWidth = Dimensions.get('window').width;
 
 interface HeaderProps {
   userProfileImage: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ userProfileImage }) => {
-  const { height, width } = useWindowDimensions(); // Get the current window size
-  const isMobile = Platform.OS === 'ios' || Platform.OS === 'android';
-
-  // Safe area height calculation for iPhone with Dynamic Island
-  const topSafeAreaPadding = isMobile ? 20 : 0; // Adjust based on safe area
+const Header = ({ userProfileImage }: HeaderProps) => {
 
   return (
-    // If mobile, use SafeAreaView to handle notches/Dynamic Island
-    isMobile ? (
-      <SafeAreaView style={[styles.safeAreaContainer, { paddingTop: topSafeAreaPadding }]}>
-        <View style={styles.container}>
-          {/* Left: App Logo */}
-          <Logo />
-          
-          {/* Right: User Profile */}
+    <SafeAreaView className="bg-white">
+      <View className="flex-row justify-between items-center px-4 py-5">
+        {/* Logo */}
+        <Image 
+          source={require('../icons/flowlogic-logo.png')} 
+          className="w-64 h-11"
+          resizeMode="stretch"
+        />
+        
+        {/* Profile Image with Notification Dot */}
+        <View className="relative">
           <Image 
             source={{ uri: userProfileImage }} 
-            style={styles.profileImage}
-            resizeMode="cover"
+            className="w-16 h-16 rounded-full"
+            resizeMode="cover" 
           />
+          
+          {/* Notification Dot */}
+          <View className="absolute bottom-0 right-0 bg-yellow-500 w-5 h-5 rounded-full border-2 border-white p-1" />
         </View>
-      </SafeAreaView>
-    ) : (
-      // On Web, we do not need SafeAreaView but still use the container style
-      <View style={styles.container}>
-        <Logo />
-        <Image 
-          source={{ uri: userProfileImage }} 
-          style={styles.profileImage}
-          resizeMode="cover"
-        />
       </View>
-    )
+    </SafeAreaView>
   );
 };
-
-// Styles
-const styles = StyleSheet.create({
-  // Safe Area Container
-  safeAreaContainer: {
-    flex: 1,
-  },
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 16, // Horizontal padding for mobile
-    backgroundColor: 'transparent', // No background color
-    height: 80, // Default header height
-    zIndex: 1,
-    // No shadow or border
-  },
-  profileImage: {
-    width: 48, // Profile image size
-    height: 48,
-    borderRadius: 24, // Circular profile picture
-  },
-});
 
 export default Header;
