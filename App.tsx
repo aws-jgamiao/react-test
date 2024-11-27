@@ -8,8 +8,7 @@ import Header from './src/components/header/Header';
 export default function App() {
   return (
     <View className="flex-1 bg-gray-500">
-      <SafeAreaView className="flex-1">
-        <Header userProfileImage={''} />
+        <Header userProfileImage={'https://cdn-icons-png.flaticon.com/512/6858/6858504.png'} />
 
         <ScrollView className="p-4">
         </ScrollView>
@@ -17,7 +16,6 @@ export default function App() {
         <TailwindProvider platform="native">
           <BottomNavBar />
         </TailwindProvider>
-      </SafeAreaView>
     </View>
   );
 }
