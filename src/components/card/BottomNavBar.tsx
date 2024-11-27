@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { styled } from 'tailwindcss-react-native';
-import ClockOn from '../icons/ClockOn';
-import ClockOff from '../icons/ClockOff';
-import Home from '../icons/Home';
-import Shifts from '../icons/Shifts';
-import TimeSheets from '../icons/TimeSheets';
-import More from '../icons/More';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faClock } from '@fortawesome/free-regular-svg-icons/faClock'
 import { faPlayCircle } from '@fortawesome/free-regular-svg-icons/faPlayCircle'
+import { faHouse } from '@fortawesome/free-solid-svg-icons/faHouse'
+import { faUser } from '@fortawesome/free-solid-svg-icons/faUser'
+import { faClock as SolidFaClock } from '@fortawesome/free-solid-svg-icons';
+import { faClock as RegularFaClock } from '@fortawesome/free-regular-svg-icons';
+import { faFile } from '@fortawesome/free-regular-svg-icons/faFile'
+import { faEllipsis } from '@fortawesome/free-solid-svg-icons/faEllipsis'
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons/faArrowRightFromBracket'
 
 const IconButton = styled(TouchableOpacity);
 
@@ -28,16 +28,20 @@ const BottomNavBar: React.FC = () => {
     setSelectedTab(tabName);
   };
 
-  const indicatorColor = 'blue-500'; // Tailwind color class
-  const selectedTextColor = 'text-blue-500'; // Tailwind text color class
-  const defaultTextColor = 'text-gray-500'; // Tailwind text color class
+  const indicatorColor = '#3B82F6';
+  const selectedTextColor = 'text-blue-500';
+  const defaultTextColor = 'text-gray-500';
 
   return (
     <View className="flex-row justify-between items-center bg-white border-t border-gray-200 relative px-4 sm:px-10 pt-6 pb-10">
       {!isSmallScreen && (
         <IconButton className="items-center flex-col" onPress={() => handleTabPress('Home')}>
           <View className="items-center mb-2">
-            <Home color={selectedTab === 'Home' ? indicatorColor : 'gray-500'} />
+            <FontAwesomeIcon
+              size={25}
+              icon={faHouse}
+              color={selectedTab === 'Home' ? indicatorColor : 'gray'}
+            />
           </View>
           <Text
             className={`text-xs mb-3 ${selectedTab === 'Home' ? selectedTextColor : defaultTextColor}`}
@@ -52,7 +56,25 @@ const BottomNavBar: React.FC = () => {
 
       <IconButton className="items-center flex-col" onPress={() => handleTabPress('Shifts')}>
         <View className="items-center mb-2">
-          <Shifts color={selectedTab === 'Shifts' ? indicatorColor : 'gray-500'} />
+          <FontAwesomeIcon
+            size={25}
+            icon={RegularFaClock}
+            color={selectedTab === 'Shifts' ? indicatorColor : 'gray'}
+          />
+          <FontAwesomeIcon
+            size={13}
+            icon={faUser}
+            color={selectedTab === 'Shifts' ? indicatorColor : 'gray'}
+            style={{
+              position: 'absolute',
+              bottom: 2,
+              left: 18,
+              zIndex: 20,
+              backgroundColor: 'white',
+              borderRadius: 3,
+              padding: 1,
+            }}
+          />
         </View>
         <Text
           className={`text-xs mb-3 ${selectedTab === 'Shifts' ? selectedTextColor : defaultTextColor}`}
@@ -66,10 +88,11 @@ const BottomNavBar: React.FC = () => {
 
       <View className="absolute top-[-45px] left-1/2 transform -translate-x-1/2 z-10">
         <TouchableOpacity onPress={handleClockPress}>
-          {isClockOn ? <View className="relative flex items-center justify-center">
-             <View className="relative bg-[#22C55E] rounded-full w-[125px] h-[125px] flex items-center justify-center border-[10px] border-white">
+          {isClockOn ? 
+            <View className="relative flex items-center justify-center">
+              <View className="relative bg-[#22C55E] rounded-full w-[125px] h-[125px] flex items-center justify-center border-[10px] border-white">
                   <FontAwesomeIcon
-                    icon={faClock}
+                    icon={RegularFaClock}
                     size={35}
                     color="white"
                     style={{
@@ -95,14 +118,45 @@ const BottomNavBar: React.FC = () => {
                 />
                 <Text className="absolute bottom-7 text-white text-[14px] font-inter font-semibold z-30">Clock On</Text>
               </View>
-            </View> : <ClockOff />}
+            </View> : 
+            <View className="relative flex items-center justify-center">
+              <View className="relative bg-[#F97316] rounded-full w-[125px] h-[125px] flex items-center justify-center border-[10px] border-white">
+                <FontAwesomeIcon 
+                    icon={faArrowRightFromBracket} 
+                    size={35}
+                    color="white"
+                    style={{
+                      position: 'absolute',
+                      top: 20,
+                      left: '50%',
+                      transform: [{ translateX: -15 }],
+                  }}/>
+                <Text className="absolute bottom-7 text-white text-[14px] font-inter font-semibold z-30">Clock Off</Text>
+              </View>
+            </View>}
         </TouchableOpacity>
       </View>
 
       {!isSmallScreen && (
         <IconButton className="items-center flex-col" onPress={() => handleTabPress('Timesheets')}>
           <View className="items-center mb-2">
-            <TimeSheets color={selectedTab === 'Timesheets' ? indicatorColor : 'gray-500'} />
+            <FontAwesomeIcon icon={faFile} size={25} color={selectedTab === 'Timesheets' ? indicatorColor : 'gray'} 
+            />
+            <FontAwesomeIcon
+                    icon={SolidFaClock}
+                    size={16}
+                    color={selectedTab === 'Timesheets' ? indicatorColor : 'gray'}
+                    style={{
+                      position: 'absolute',
+                      top: 9,
+                      left: 47,
+                      borderRadius: 10,
+                      transform: [{ translateX: -15 }],
+                      zIndex: 20,
+                      backgroundColor: 'white',
+                      padding: 1,
+                  }}
+              />
           </View>
           <Text
             className={`text-xs mb-3 ${selectedTab === 'Timesheets' ? selectedTextColor : defaultTextColor}`}
@@ -116,14 +170,23 @@ const BottomNavBar: React.FC = () => {
       )}
 
       <IconButton className="items-center flex-col" onPress={() => handleTabPress('More')}>
-        <View className="items-center mb-2">
-          <More color={selectedTab === 'More' ? indicatorColor : 'gray-500'} />
+        <View className="flex items-center justify-center mb-2">
+          <View 
+            className={`border-2 rounded-full p-2 mb-2 ${selectedTab === 'More' ? `border-[#3B82F6]` : 'border-gray-500'}`}
+          >
+            <FontAwesomeIcon 
+              icon={faEllipsis} 
+              size={15} 
+              color={selectedTab === 'More' ? indicatorColor : 'gray'} 
+            />
+          </View>
+          <Text
+            className={`text-xs mb-3 ${selectedTab === 'More' ? selectedTextColor : defaultTextColor}`}
+          >
+            More
+          </Text>
         </View>
-        <Text
-          className={`text-xs mb-3 ${selectedTab === 'More' ? selectedTextColor : defaultTextColor}`}
-        >
-          More
-        </Text>
+
         {!isSmallScreen && selectedTab === 'More' && (
           <View className="w-2 h-2 rounded-full absolute bottom-[-6px] left-1/2 transform -translate-x-1/2 bg-blue-500" />
         )}
