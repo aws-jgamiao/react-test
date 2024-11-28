@@ -56,28 +56,30 @@ const BottomNavBar = () => {
 
       {isSmallScreen && (
       <IconButton className="items-center flex-col" onPress={() => handleTabPress('Shifts')}>
-        <View className="items-center mb-2 pl-3">
-          <FontAwesomeIcon
-            size={25}
-            icon={RegularFaClock}
-            color={selectedTab === 'Shifts' ? indicatorColor : 'gray'}
-          />
-         <View className="absolute bottom-[-2] left-9 z-20 bg-white rounded-full p-0.5 border border-[1px] border-white">
-          <FontAwesomeIcon
-            size={13}
-            icon={faUser}
-            color={selectedTab === 'Shifts' ? indicatorColor : 'gray'}
-          />
+        <View className="relative items-center mb-2 ml-10">
+          {/* Wrapper for overlapping icons */}
+          <View className="relative">
+            {/* Larger Clock Icon */}
+            <FontAwesomeIcon
+              size={25}
+              icon={RegularFaClock}
+              color={selectedTab === 'Shifts' ? indicatorColor : 'gray'}
+            />
+            {/* Smaller User Icon */}
+            <View className="absolute bottom-[-2px] left-[55%] bg-white rounded-full p-0.5 border border-white">
+              <FontAwesomeIcon
+                size={13}
+                icon={faUser}
+                color={selectedTab === 'Shifts' ? indicatorColor : 'gray'}
+              />
+            </View>
           </View>
         </View>
         <Text
-          className={`text-xs mb-3 pl-4 ${selectedTab === 'Shifts' ? selectedTextColor : defaultTextColor}`}
+          className={`text-xs ml-12 ${selectedTab === 'Shifts' ? selectedTextColor : defaultTextColor}`}
         >
           Shifts
         </Text>
-        {!isSmallScreen && selectedTab === 'Shifts' && (
-          <View className="w-2 h-2 rounded-full absolute bottom-[-6px] left-[1/2] transform -translate-x-1/2 bg-blue-500" />
-        )}
       </IconButton>
       )}
 
@@ -202,7 +204,7 @@ const BottomNavBar = () => {
             <IconButton className="items-center flex-col" onPress={() => handleTabPress('More')}>
               <View className="flex items-center justify-center pr-3">
                 <View 
-                  className={`border-2 rounded-full p-2 mb-2 ${selectedTab === 'More' ? `border-[#3B82F6]` : 'border-gray-500'}`}
+                  className={`border-2 rounded-full p-2 mb-2 mr-12 ${selectedTab === 'More' ? `border-[#3B82F6]` : 'border-gray-500'}`}
                 >
                   <FontAwesomeIcon 
                     icon={faEllipsis} 
@@ -211,15 +213,11 @@ const BottomNavBar = () => {
                   />
                 </View>
                 <Text
-                  className={`text-xs mb-3 ${selectedTab === 'More' ? selectedTextColor : defaultTextColor}`}
+                  className={`text-xs mb-3 mr-12 ${selectedTab === 'More' ? selectedTextColor : defaultTextColor}`}
                 >
                   More
                 </Text>
               </View>
-
-              {!isSmallScreen && selectedTab === 'More' && (
-                <View className="w-2 h-2 rounded-full absolute bottom-[-6px] left-1/2 transform -translate-x-1/2 bg-blue-500" />
-              )}
             </IconButton>
       )}
 
