@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, SafeAreaView, Platform, Dimensions } from 'react-native';
+import { View, Image, SafeAreaView, Dimensions } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 
