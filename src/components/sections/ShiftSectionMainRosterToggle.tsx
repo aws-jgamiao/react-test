@@ -3,17 +3,18 @@ import { View, Text, Switch } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
-import HorizontalCalendar from '../date/HorizontalCalendar'; // Import the HorizontalCalendar component
+import HorizontalCalendar from '../date/HorizontalCalendar';
 import EventCard from '../card/EventCard';
+import { useNavigation } from '@react-navigation/native';
 
 const RosteredShiftsToggle = () => {
   const [showCancelled, setShowCancelled] = useState(false);
+  const navigation = useNavigation();  // Use useNavigation to get the navigation prop
 
   const handleToggle = () => {
     setShowCancelled((prev) => !prev);
   };
 
-  // Example days data for the calendar
   const days = [
     { day: 'Mon', date: '26 Sep' },
     { day: 'Tue', date: '27 Sep' },
@@ -25,8 +26,7 @@ const RosteredShiftsToggle = () => {
   ];
 
   return (
-    <View className="">
-      {/* Rostered Shifts and Show Cancelled */}
+    <View>
       <View className="flex-row justify-between items-center p-5">
         <View className="flex-row items-center">
           <View className="relative">
@@ -61,9 +61,9 @@ const RosteredShiftsToggle = () => {
         <HorizontalCalendar days={days} />
       </View>
       <View className="pt-4 pb-4">
-        <EventCard />
+        {/* Pass the navigation prop to EventCard */}
+        <EventCard navigation={navigation} />
       </View>
-      
     </View>
   );
 };
